@@ -1,3 +1,5 @@
+const cors = require("cors");
+app.use(cors({ origin: "https://pushpabhk.github.io", credentials: true }));
 const dotenv = require('dotenv');
 dotenv.config();
 const express = require('express');
