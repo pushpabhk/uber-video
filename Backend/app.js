@@ -1,4 +1,3 @@
-app.use(cors({ origin: "https://pushpabhk.github.io", credentials: true }));
 const dotenv = require('dotenv');
 dotenv.config();
 const express = require('express');
@@ -13,28 +12,23 @@ const rideRoutes = require('./routes/ride.routes');
 
 connectToDb();
 
-app.use(cors());
+// ✅ Proper CORS setup
+app.use(cors({ origin: "https://pushpabhk.github.io", credentials: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-
-
 app.get('/', (req, res) => {
-    res.send('Hello World');
+  res.send('Hello World');
 });
+
 app.get('/health', (req, res) => {
-    res.status(200).json({ status: 'ok' });
-  });
-  
+  res.status(200).json({ status: 'ok' });
+});
 
 app.use('/users', userRoutes);
 app.use('/captains', captainRoutes);
 app.use('/maps', mapsRoutes);
 app.use('/rides', rideRoutes);
 
-
-
-
 module.exports = app;
-
